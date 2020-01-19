@@ -1,12 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int PDVmonstre=300; 
+int PDVmonstre=250; 
 int PDVjoueur=200;
 int ChoixAttaque=0;
 int ChoixMonstre=0;
 int degatJoueur=20;
 int degatMonstre=20;
+
+
+
+int nbToursPoisonJoueur=0;
 
 int attaqueJoueur (int PDVciblej){
 	
@@ -17,6 +21,11 @@ int attaqueMonstre (int PDVcibleM){
 	
 	PDVcibleM=PDVcibleM-degatMonstre;
 	return PDVcibleM;
+}
+int poisonMonstre (int PDVcibleMpoison){
+	
+	PDVcibleMpoison=PDVcibleMpoison-5;
+	return PDVcibleMpoison;
 }
 
 
@@ -47,9 +56,26 @@ int main(){
 			degatJoueur=5;
 			
 		}
+		if (ChoixAttaque==3){
+			printf ("Le monstre a %d points de vie \n",PDVmonstre);
+			printf ("Vous lancez a sort de poison au monstre! Il perdra -5 points de vie par tours pendant 5 tours!  \n \n");
+			nbToursPoisonJoueur=nbToursPoisonJoueur+5;
+			
+		}
 		degatMonstre=20;
 		
 		ChoixMonstre = rand()%2+1;
+		
+		printf (" Le monstre est sous l'effet du poison pour %d tours",nbToursPoisonJoueur);
+		
+		if(nbToursPoisonJoueur>=1){
+			
+		printf("Le monstre subit -5 degats a cause du poison! \n");	
+	    PDVmonstre=poisonMonstre(PDVmonstre);
+		printf("Le monstre a %d points de vie",PDVmonstre);
+		
+		nbToursPoisonJoueur=nbToursPoisonJoueur-1;
+		}
 		
 		if (ChoixMonstre==1){
 			printf("Le monstre vous attaque! Vous subissez %d points de vie! \n",degatJoueur);
