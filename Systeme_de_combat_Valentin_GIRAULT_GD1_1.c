@@ -167,7 +167,7 @@ int main(){
 	}
 	
 	if (PDVmonstre<0){
-		printf("Victoire!");
+		printf("Vous avez REUSSI!");
 	}
 	if(PDVjoueur<0){
 		printf("Vous etes mort!");
